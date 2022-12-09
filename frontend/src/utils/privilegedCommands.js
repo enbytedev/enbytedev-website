@@ -1,4 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
+import { accessRequest } from "./accessRequest"
+import { user } from "../App.js"
 
 const defaultCmds = {
     commands: {},
@@ -17,7 +19,7 @@ const careerCmds = {
             description: 'Opens my resume in a new tab.',
             usage: 'resume',
             fn: () => {
-                window.open(`${process.env.REACT_APP_STATIC_URL}/resume.pdf`, '_blank')
+                accessRequest(user.username, user.password, 'resume')
                 return '❯ Opening resume in a new tab...'
             }
         }

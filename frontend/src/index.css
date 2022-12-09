@@ -41,10 +41,10 @@ pre {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7472ff;
+  background: #423fd9b4;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7472ff;
+  background: #423fd9b4;
 }

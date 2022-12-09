@@ -1,4 +1,4 @@
 dist/
-public/
+static/
 node_modules/
 logs/

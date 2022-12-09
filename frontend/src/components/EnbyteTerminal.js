@@ -2,6 +2,7 @@ import Terminal from 'react-console-emulator'
 import React from 'react'
 import commands from '../utils/commands.js'
 import loginUser from '../utils/login.js'
+import { setUser } from '../App.js'
 
 const motdBanner = `
 ❯ enbyte.dev cli // enbytedev@github
@@ -14,7 +15,7 @@ export default function EnbyteTerminal() {
     const [cmdo, setCmdo] = React.useState(commands.override)
     const terminal = React.createRef()
     const [prompt, setPrompt] = React.useState('guest@enbytedev:~$ ') // this allows the prompt to change for logged in users
-
+    
     return (
             <Terminal
                 ref={terminal}
@@ -54,11 +55,12 @@ export default function EnbyteTerminal() {
                     description: 'Logout of a user account (handled by override)',
                     usage: 'logout (handled by override)',
                     fn: () => {
-                        setCmds(commands.commands)
-                        setCmdo(commands.override)
                         if ('guest@enbytedev:~$ ' === prompt) {
                             return '❯ You are not logged in.'
                         }
+                        setCmds(commands.commands)
+                        setCmdo(commands.override)
+                        setUser({username: 'guest', password: 'guest'})
                         setPrompt('guest@enbytedev:~$ ')
                         return '❯ Logged out.'
                     }

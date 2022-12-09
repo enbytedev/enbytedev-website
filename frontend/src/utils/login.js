@@ -1,5 +1,6 @@
 import axios from 'axios';
 import checkPermissions from './permissionsManager';
+import { setUser } from '../App';
 
 export default function loginUser(args, setPrompt, setCmd, setCmdo, loggedIn) {
     if (args.length !== 2) {
@@ -17,6 +18,7 @@ export default function loginUser(args, setPrompt, setCmd, setCmdo, loggedIn) {
                 ) {
                     name
                     username
+                    password
                     permissions
                 }
             }`
@@ -29,6 +31,7 @@ export default function loginUser(args, setPrompt, setCmd, setCmdo, loggedIn) {
         setPrompt(`${result.data.data.getUserByLogin.username}@enbytedev:~${newCmds.type} `)
         setCmd(newCmds.newCommands)
         setCmdo(newCmds.newOverride)
+        setUser({username: result.data.data.getUserByLogin.username, password: result.data.data.getUserByLogin.password})
 
         if (loggedIn) {
             return `❯ Already logged in; switching users.\n❯ Logged in as ${result.data.data.getUserByLogin.username}\n❯ Welcome ${result.data.data.getUserByLogin.name}!`

@@ -4,6 +4,7 @@
   "type": "module",
   "main": "index.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "confectionery": "^1.0.5",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -11,8 +12,10 @@
     "express-graphql": "^0.12.0",
     "express-rate-limit": "^6.7.0",
     "graphql": "^15.6.0",
+    "node-cache": "^5.1.2",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "sugarcube": "^2.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

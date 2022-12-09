@@ -80,14 +80,6 @@ export default {
                     `
             }
         },
-        twitter: {
-            description: 'Opens my Twitter Handle',
-            usage: 'twitter',
-            fn: () => {
-                window.open('https://twitter.com/enbytedev', '_blank')
-                return "Opening Twitter user @enbytedev in a new tab..."
-            }
-        },
         github: {
             description: 'Opens my GitHub Profile.',
             usage: 'github',

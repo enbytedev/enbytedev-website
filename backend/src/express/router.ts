@@ -1,4 +1,4 @@
-import express, { Express, Router } from "express";
+import { Express, Router } from "express";
 import { logger } from "../setup/mainLogger.js";
 import { browserRateLimit } from "../express/middleware.js";
 import RoutesAggregate from "./routes/routesAggregate.js";
@@ -6,13 +6,16 @@ import { graphqlHTTP } from "express-graphql";
 import schema from "../graphql/Schema.js";
 import root from "../graphql/Resolver.js";
 import cors from 'cors';
-import path from 'path';
+import bodyParser from 'body-parser';
 
 const Routes = new RoutesAggregate();
 const router = Router();
 
 export const setRoutes = (app: Express) => {
     logger.debug(`Configuring Express routing...`, "ExpressJS Setup")
+
+    app.use(bodyParser.json())
+    app.use(bodyParser.urlencoded({extended: true}))
 
     router.use("/api", graphqlHTTP({
         schema: schema,
@@ -22,7 +25,9 @@ export const setRoutes = (app: Express) => {
     router.get("/", browserRateLimit, Routes.basic.home);
     // router.get("*", browserRateLimit, Routes.basic.notFound);
 
-    app.use('/public', browserRateLimit, express.static(path.resolve('./public')));
+    app.post('/access', cors(), browserRateLimit, Routes.access.newlink);
+    app.get('/access', browserRateLimit, Routes.access.access);
+
     app.use(cors());
     app.use(router);
 }
