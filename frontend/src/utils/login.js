@@ -1,6 +1,6 @@
 import axios from 'axios';
 import checkPermissions from './permissionsManager';
-import { setUser } from '../App';
+import { setUser, API_URL } from '../App';
 
 export default function loginUser(args, setPrompt, setCmd, setCmdo, loggedIn) {
     if (args.length !== 2) {
@@ -8,7 +8,7 @@ export default function loginUser(args, setPrompt, setCmd, setCmdo, loggedIn) {
     }
 
     return axios({
-        url: `${process.env.REACT_APP_API_URL}`,
+        url: `${API_URL}`,
         method: 'post',
         data: {
             query: `query {
